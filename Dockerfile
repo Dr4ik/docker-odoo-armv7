@@ -1,4 +1,5 @@
-FROM ubuntu:trusty
+FROM armv7/armhf-ubuntu:16.04
+
 MAINTAINER maxcrc GmbH <info@maxcrfc.de>
 
 RUN set -x; \
@@ -7,6 +8,7 @@ RUN set -x; \
 	    git \
 	    ca-certificates \
             curl \
+	    python-wheel \
             node-less \
             node-clean-css \
 	    libjpeg-dev \
@@ -21,9 +23,9 @@ RUN set -x; \
 	    python-dev \
             python-pyinotify \
             python-renderpm \
-            python-support \
 	    python-pip \
 	    build-essential \
+	    python-setuptools \
 	    autoconf \
 	    python-dev \
 	    libxml2 \
@@ -31,11 +33,8 @@ RUN set -x; \
 	    freetds-dev\
 	    telnet \
 	    mc \
-        && curl -o wkhtmltox.deb -SL http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb \
-        && dpkg --force-depends -i wkhtmltox.deb \
         && apt-get -y install -f --no-install-recommends \
-        && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false npm \
-        && rm -rf /var/lib/apt/lists/* wkhtmltox.deb
+        && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false npm
 
 COPY ./requirements.txt /etc/odoo/
 
