@@ -1,1 +1,5 @@
-# docker-odoo skeleton, buntu 14.04 trusty prepared to run odoo without odoo sources
+## armv7 bassed docker-odoo skeleton
+
+wkhtmltopdf is not included so far.
+
+
